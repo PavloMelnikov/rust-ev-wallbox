@@ -58,13 +58,13 @@ pub mod ocpp {
         }
     }
 
-    pub fn do_request() {
-        let auth_request_payload = AuthorizeRequest {
-            id_tag: "123456".to_string(),
-        };
-        let auth_request = OcppRequest::Authorize(auth_request_payload);
-        handle(auth_request);
-    }
+    // pub fn do_request() {
+    //     let auth_request_payload = AuthorizeRequest {
+    //         id_tag: "123456".to_string(),
+    //     };
+    //     let auth_request = OcppRequest::Authorize(auth_request_payload);
+    //     handle(auth_request);
+    // }
 
     // ----------- Tests -----------
 

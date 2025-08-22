@@ -2,7 +2,7 @@ use std::error::Error;
 ///// Stage 3: Deserialize whole OCPP response /////
 use crate::ocpp::CallId;
 use crate::ocpp::raw_ocpp_message::RawOcppMessage;
-use serde::{Deserialize, Deserializer};
+use serde::{Deserializer};
 
 #[derive(Debug, Clone, Eq, PartialEq, serde::Serialize)]
 pub struct OcppEvent {
@@ -162,7 +162,8 @@ mod tests {
 ]
 "#;
 
-        let result = serde_json::from_str::<OcppEvent>(json);
+        let result = serde_json::from_str::<RawOcppMessage>(json).unwrap();
+        let result = convert(result);
         println!("{:#?}", result);
         assert!(result.is_ok());
         let expected = OcppEvent {
@@ -201,7 +202,8 @@ mod tests {
 ]
 "#;
 
-        let result = serde_json::from_str::<OcppEvent>(json);
+        let result = serde_json::from_str::<RawOcppMessage>(json).unwrap();
+        let result = convert(result);
         println!("{:#?}", result);
         assert!(result.is_ok());
         let expected = OcppEvent {
@@ -250,7 +252,7 @@ mod tests {
             )),
         };
         let ocppEvent = convert(rawOcppMessage).unwrap();
-        
+
         assert_eq!(ocppEvent, expected);
     }
 }

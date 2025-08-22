@@ -9,7 +9,6 @@ pub struct TypedOcppMessage {
 
 use serde::de::{self, SeqAccess, Visitor};
 use serde::{Deserialize, Deserializer};
-use serde_json::Value;
 use std::fmt;
 use crate::ocpp::CallId;
 
@@ -69,7 +68,7 @@ impl<'de> Deserialize<'de> for TypedOcppMessage {
 #[derive(Debug, Clone, Eq, PartialEq, serde::Serialize, serde::Deserialize)]
 pub enum MessageType {
     Call = 2, //request
-    CallResult = 3, 
+    CallResult = 3,
     CallError = 4,
 }
 
