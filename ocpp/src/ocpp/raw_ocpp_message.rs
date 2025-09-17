@@ -7,9 +7,41 @@ pub struct RawOcppMessage {
     pub payload: serde_json::Value,
 }
 
+// macro is used for all the tests
+macro_rules! ocpp_test {
+    ($name:ident, $action:expr, $payload:expr) => {
+        #[test]
+        fn $name() {
+            let json = serde_json::json!([
+                3,
+                "19223201",
+                $action,
+                $payload
+            ])
+            .to_string();
+
+            let result = serde_json::from_str::<RawOcppMessage>(&json);
+            assert!(result.is_ok());
+
+            let expected = RawOcppMessage {
+                message_type: 3,
+                call_id: "19223201".to_string(),
+                action: $action.to_string(),
+                payload: $payload,
+            };
+
+            assert_eq!(result.unwrap(), expected);
+        }
+    };
+}
+
+
+//test serialization of all event types
+
+
+
 #[allow(non_snake_case)]
 #[cfg(test)]
-mod dumb_struct_tests {
     use super::*;
 
     #[test]

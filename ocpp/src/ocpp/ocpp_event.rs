@@ -3,6 +3,9 @@ use std::error::Error;
 use crate::ocpp::CallId;
 use crate::ocpp::raw_ocpp_message::RawOcppMessage;
 use serde::{Deserializer};
+use super::types
+
+
 
 #[derive(Debug, Clone, Eq, PartialEq, serde::Serialize)]
 pub struct OcppEvent {
@@ -56,7 +59,34 @@ pub enum OcppResponse {
     BootNotification(BootNotificationResponse),
     CancelReservation(CancelReservationResponse),
     ClearCache(ClearCacheResponse),
+    ChangeAvailability(ChangeAvailabilityResponse),
+    ChangeConfiguration(ChangeConfigurationResponse),
+    ClearChargingProfile(ClearChargingProfileResponse),
+    DataTransfer(DataTransferResponse),
+    DiagnosticsStatusNotification(DiagnosticsStatusNotificationResponse),
+    FirmwareStatusNotification(FirmwareStatusNotificationResponse),
+    GetCompositeSchedule(GetCompositeScheduleResponse),
+    GetConfiguration(GetConfigurationResponse),
+    GetDiagnostics(GetDiagnosticsResponse),
+    GetLocalListVersion(GetLocalListVersionResponse),
+    Heartbeat(HeartbeatResponse),
+    MeterValues(MeterValuesResponse),
+    RemoteStartTransaction(RemoteStartTransactionResponse),
+    RemoteStopTransaction(RemoteStopTransactionResponse),
+    ReserveNow(ReserveNowResponse),
+    Reset(ResetResponse),
+    SendLocalList(SendLocalListResponse),
+    SetChargingProfile(SetChargingProfileResponse),
+    StartTransaction(StartTransactionResponse),
+    StatusNotification(StatusNotificationResponse),
+    StopTransaction(StopTransactionResponse),
+    TriggerMessage(TriggerMessageResponse),
+    UnlockConnector(UnlockConnectorResponse),
+    UpdateFirmware(UpdateFirmwareResponse)
     Other(String, serde_json::Value),
+    () => {};
+}
+
 }
 
 #[derive(Debug, Clone, Eq, PartialEq, serde::Serialize, serde::Deserialize)]
@@ -73,6 +103,107 @@ pub struct CancelReservationResponse {
     pub custom_data: Option<serde_json::Value>, // Custom data can be any JSON value
     pub reservation_id: u32,
 }
+
+pub struct ChangeAvailabilityResponse {
+    pub status: String,
+    pub current_time: String,
+    pub interval: u32,
+}
+
+pub struct ChangeConfigurationResponse {
+
+}
+
+pub struct ClearChargingProfileResponse {
+
+}
+
+pub struct DataTransferResponse {
+
+}
+
+pub struct DiagnosticsStatusNotificationResponse {
+
+}
+
+pub struct FirmwareStatusNotificationResponse {
+
+}
+
+pub struct GetCompositeScheduleResponse {
+
+}
+
+pub struct GetConfigurationResponse {
+
+}
+
+pub struct GetDiagnosticsResponse {
+
+}
+
+pub struct GetLocalListVersionResponse {
+
+}
+
+pub struct HeartbeatResponse {
+
+}
+
+pub struct MeterValuesResponse {
+
+}
+
+pub struct RemoteStartTransactionResponse {
+
+}
+
+pub struct RemoteStopTransactionResponse {
+
+}
+
+pub struct ReserveNowResponse {
+
+}
+
+pub struct ResetResponse {
+
+}
+
+pub struct SendLocalListResponse {
+
+}
+
+pub struct SetChargingProfileResponse {
+
+}
+
+pub struct StartTransactionResponse {
+
+}
+
+pub struct StatusNotificationResponse {
+
+}
+
+pub struct StopTransactionResponse {
+
+}
+
+pub struct TriggerMessageResponse {
+
+}
+
+pub struct UnlockConnectorResponse {
+    status : String,
+}
+
+pub struct UpdateFirmwareResponse {
+
+}
+
+
+
 
 // [
 //   3,
